@@ -13,6 +13,8 @@ namespace Entitas {
         readonly List<TEntity> _buffer;
         string _toStringCache;
 
+        public virtual SystemPriority Priority { get { return SystemPriority.Normal; } }
+
         protected ReactiveSystem(IContext<TEntity> context) {
             _collector = GetTrigger(context);
             _buffer = new List<TEntity>();

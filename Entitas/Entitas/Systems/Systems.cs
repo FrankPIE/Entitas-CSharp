@@ -14,6 +14,8 @@ namespace Entitas {
         protected readonly List<ICleanupSystem> _cleanupSystems;
         protected readonly List<ITearDownSystem> _tearDownSystems;
 
+        public virtual SystemPriority Priority { get { return SystemPriority.Normal; } }
+
         /// Creates a new Systems instance.
         public Systems() {
             _initializeSystems = new List<IInitializeSystem>();
@@ -22,26 +24,111 @@ namespace Entitas {
             _tearDownSystems = new List<ITearDownSystem>();
         }
 
+        protected void AddHighestSystem<T>( List<T> list, T system )
+            where T : class, ISystem {
+
+            var index = list.FindLastIndex(item => { return item.Priority == SystemPriority.Highest; });
+
+            list.Insert(index == -1 ? 0 : index + 1, system);
+        }
+
+        protected void AddHighSystem<T>( List<T> list, T system )
+            where T : class, ISystem {
+
+            var index = list.FindLastIndex(item => { return item.Priority == SystemPriority.High; });
+
+            if (index == -1) {
+                AddHighestSystem(list, system);
+            } else {
+                list.Insert(index + 1, system);
+            }
+        }
+
+        protected void AddNormalSystem<T>( List<T> list, T system )
+            where T : class, ISystem {
+
+            var index = list.FindLastIndex(item => { return item.Priority == SystemPriority.Normal; });
+
+            if (index == -1) {
+                AddHighSystem(list, system);
+            } else {
+                list.Insert(index + 1, system);
+            }
+        }
+
+        protected void AddLowSystem<T>( List<T> list, T system )
+            where T : class, ISystem {
+
+            var index = list.FindLastIndex(item => { return item.Priority == SystemPriority.Normal; });
+
+            if (index == -1) {
+                AddNormalSystem(list, system);
+            } else {
+                list.Insert(index + 1, system);
+            }
+        }
+
+        protected void AddLowestSystem<T>( List<T> list, T system )
+            where T : class, ISystem {
+
+            var index = list.FindLastIndex(item => { return item.Priority == SystemPriority.Normal; });
+
+            if (index == -1) {
+                AddLowSystem(list, system);
+            } else {
+                list.Insert(index + 1, system);
+            }
+        }
+
+        protected void SystemAdd<T>( List<T> list, T system ) 
+            where T : class, ISystem {
+
+            switch (system.Priority) {
+                case SystemPriority.Highest:
+                    AddHighestSystem(list, system);
+                    break;
+                
+                case SystemPriority.High:
+                    AddHighSystem(list, system);
+                    break;
+
+                case SystemPriority.Normal:
+                    AddNormalSystem(list, system);
+                    break;
+
+                case SystemPriority.Low:
+                    AddLowSystem(list, system);
+                    break;
+                
+                case SystemPriority.Lowest:
+                    AddLowestSystem(list, system);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
         /// Adds the system instance to the systems list.
         public virtual Systems Add(ISystem system) {
             var initializeSystem = system as IInitializeSystem;
             if (initializeSystem != null) {
-                _initializeSystems.Add(initializeSystem);
+                SystemAdd(_initializeSystems, initializeSystem);
             }
 
             var executeSystem = system as IExecuteSystem;
             if (executeSystem != null) {
-                _executeSystems.Add(executeSystem);
+                SystemAdd(_executeSystems, executeSystem);
             }
 
             var cleanupSystem = system as ICleanupSystem;
             if (cleanupSystem != null) {
-                _cleanupSystems.Add(cleanupSystem);
+                SystemAdd(_cleanupSystems, cleanupSystem);
             }
 
             var tearDownSystem = system as ITearDownSystem;
             if (tearDownSystem != null) {
-                _tearDownSystems.Add(tearDownSystem);
+                SystemAdd(_tearDownSystems, tearDownSystem);
             }
 
             return this;

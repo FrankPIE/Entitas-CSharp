@@ -16,6 +16,8 @@ namespace Entitas {
         readonly List<TEntity> _buffer;
         string _toStringCache;
 
+        public virtual SystemPriority Priority { get { return SystemPriority.Normal; } }
+
         protected MultiReactiveSystem(TContexts contexts) {
             _collectors = GetTrigger(contexts);
             _collectedEntities = new HashSet<TEntity>();

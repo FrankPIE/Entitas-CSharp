@@ -15,6 +15,8 @@ namespace Entitas {
 
         int _threadsRunning;
 
+        public virtual SystemPriority Priority { get { return SystemPriority.Normal; } }
+
         protected JobSystem(IGroup<TEntity> group, int threads) {
             _group = group;
             _threads = threads;
