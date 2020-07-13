@@ -35,6 +35,7 @@
     </Reference>
     <Reference Include="DesperateDevs.Unity.Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\Libraries\Dependencies\DesperateDevs\DesperateDevs.Unity.Editor.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DesperateDevs.Utils, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\Libraries\Dependencies\DesperateDevs\DesperateDevs.Utils.dll</HintPath>
