@@ -1,7 +1,6 @@
 using System;
 using DesperateDevs.Serialization;
 using DesperateDevs.Unity.Editor;
-using Entitas.Unity;
 using UnityEditor;
 using UnityEngine;
 
@@ -156,20 +155,20 @@ namespace Entitas.VisualDebugging.Unity.Editor
                     return;
                 }
 
-                var entityLink = gameObject.GetComponent<EntityLink>();
-                if (entityLink != null)
-                {
-                    if (entityLink.entity != null)
-                    {
-                        GUI.DrawTexture(rect, entityLinkHierarchyIcon);
-                    }
-                    else
-                    {
-                        GUI.DrawTexture(rect, entityLinkWarnHierarchyIcon);
-                    }
+                //var entityLink = gameObject.GetComponent<EntityLink>();
+                //if (entityLink != null)
+                //{
+                //    if (entityLink.entity != null)
+                //    {
+                //        GUI.DrawTexture(rect, entityLinkHierarchyIcon);
+                //    }
+                //    else
+                //    {
+                //        GUI.DrawTexture(rect, entityLinkWarnHierarchyIcon);
+                //    }
 
-                    return;
-                }
+                //    return;
+                //}
 
                 var debugSystemsBehaviour = gameObject.GetComponent<DebugSystemsBehaviour>();
                 if (debugSystemsBehaviour != null)

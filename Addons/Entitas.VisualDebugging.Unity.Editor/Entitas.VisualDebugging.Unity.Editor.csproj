@@ -54,7 +54,6 @@
     <Compile Include="Entitas.VisualDebugging.Unity.Editor\DebugSystems\DebugSystemsInspector.cs" />
     <Compile Include="Entitas.VisualDebugging.Unity.Editor\EntitasHierarchyIcon.cs" />
     <Compile Include="Entitas.VisualDebugging.Unity.Editor\EntitasStats.cs" />
-    <Compile Include="Entitas.VisualDebugging.Unity.Editor\EntityLinkInspector.cs" />
     <Compile Include="Entitas.VisualDebugging.Unity.Editor\Entity\DefaultInstanceCreator\DefaultArrayCreator.cs" />
     <Compile Include="Entitas.VisualDebugging.Unity.Editor\Entity\DefaultInstanceCreator\DefaultStringCreator.cs" />
     <Compile Include="Entitas.VisualDebugging.Unity.Editor\Entity\DefaultInstanceCreator\IDefaultInstanceCreator.cs" />
@@ -102,11 +101,6 @@
     <ProjectReference Include="..\..\Entitas\Entitas.csproj">
       <Project>{A0A11CC3-8B1E-4345-A5FA-01FC60E581D8}</Project>
       <Name>Entitas</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\Entitas.Unity\Entitas.Unity.csproj">
-      <Project>{CB3ADCB3-E842-4A71-B32E-15ABDE7311F6}</Project>
-      <Name>Entitas.Unity</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
