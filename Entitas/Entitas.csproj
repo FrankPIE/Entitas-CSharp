@@ -48,6 +48,7 @@
     <Compile Include="Entitas\Group\Group.cs" />
     <Compile Include="Entitas\Context\Context.cs" />
     <Compile Include="Entitas\Systems\JobSystem.cs" />
+    <Compile Include="Entitas\Systems\BaseSystem.cs" />
     <Compile Include="Entitas\Systems\SystemPriority.cs" />
     <Compile Include="Entitas\Systems\Systems.cs" />
     <Compile Include="Entitas\Systems\ReactiveSystem.cs" />
