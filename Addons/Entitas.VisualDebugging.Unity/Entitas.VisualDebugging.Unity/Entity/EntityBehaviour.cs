@@ -26,11 +26,12 @@ namespace Entitas.VisualDebugging.Unity {
 
         void onEntityReleased(IEntity e) {
             _entity.OnEntityReleased -= onEntityReleased;
-            gameObject.SetActive(false);
-            gameObject.hideFlags = HideFlags.HideInHierarchy;
-            _entityBehaviourPool.Push(this);
-            _cachedName = null;
-            name = string.Empty;
+            gameObject.DestroyGameObject();
+            //gameObject.hideFlags = HideFlags.HideInHierarchy;
+            //gameObject.SetActive(false);
+            //_entityBehaviourPool.Push(this);
+            //_cachedName = null;
+            //name = string.Empty;
         }
 
         void Update() {

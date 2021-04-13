@@ -23,7 +23,7 @@ namespace Entitas.VisualDebugging.Unity {
             _gameObject = new GameObject();
             _gameObject.AddComponent<ContextObserverBehaviour>().Init(this);
 
-            _context.OnEntityCreated += onEntityCreated;
+            _context.OnEntityCreated += onEntityCreated; 
             _context.OnGroupCreated += onGroupCreated;
         }
 
@@ -33,9 +33,11 @@ namespace Entitas.VisualDebugging.Unity {
         }
 
         void onEntityCreated(IContext context, IEntity entity) {
-            var entityBehaviour = _entityBehaviourPool.Count > 0
-                ? _entityBehaviourPool.Pop()
-                : new GameObject().AddComponent<EntityBehaviour>();
+            //var entityBehaviour = _entityBehaviourPool.Count > 0
+            //    ? _entityBehaviourPool.Pop()
+            //    : new GameObject().AddComponent<EntityBehaviour>();
+
+            var entityBehaviour = new GameObject().AddComponent<EntityBehaviour>();
 
             entityBehaviour.Init(context, entity, _entityBehaviourPool);
             entityBehaviour.transform.SetParent(_gameObject.transform, false);
